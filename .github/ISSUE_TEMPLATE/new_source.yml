@@ -1,0 +1,42 @@
+name: New data source
+description: Propose support for another AI coding tool
+labels: ["source", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Only share **redacted structure**: replace every prompt, response, path and command with `"<redacted>"`. Keep field names and numbers.
+  - type: input
+    id: tool
+    attributes:
+      label: Tool and version
+      placeholder: "e.g. Amp 1.4.2"
+    validations:
+      required: true
+  - type: textarea
+    id: location
+    attributes:
+      label: Where it stores usage
+      description: File or database location on each OS you've checked.
+      placeholder: |
+        Windows: %USERPROFILE%\...
+        macOS: ~/...
+        Linux: ~/...
+    validations:
+      required: true
+  - type: textarea
+    id: sample
+    attributes:
+      label: Redacted sample
+      description: One or two records with all content replaced.
+      render: json
+  - type: textarea
+    id: fields
+    attributes:
+      label: Usage fields
+      description: Which fields hold timestamps, session/turn IDs, model and token counts.
+  - type: textarea
+    id: reference
+    attributes:
+      label: Reference tool
+      description: Any existing tool whose totals we can compare against.
