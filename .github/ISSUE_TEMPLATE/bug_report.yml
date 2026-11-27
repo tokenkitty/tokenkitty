@@ -1,0 +1,46 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. **Never paste prompts, code, file paths or tokens** into an issue. Redact them first.
+        Security problems go through [SECURITY.md](https://github.com/tokenkitty/tokenkitty/blob/main/SECURITY.md), not here.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options: [collector, server, dashboard, importer, docs, other]
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Tokenkitty version
+      placeholder: "tokenkitty --version"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options: [Windows, macOS, Linux, Docker]
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (redacted)
+      render: text
