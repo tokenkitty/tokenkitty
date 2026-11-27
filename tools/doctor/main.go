@@ -29,7 +29,7 @@ var tools = []tool{
 	{name: "docker", args: []string{"--version"}, install: "winget install Docker.DockerDesktop"},
 	{name: "sqlc", args: []string{"version"}, min: [2]int{1, 0}, install: "go install github.com/sqlc-dev/sqlc/cmd/sqlc@v1.30.0"},
 	{name: "migrate", install: "go install -tags postgres github.com/golang-migrate/migrate/v4/cmd/migrate@v4.20.1"},
-	{name: "air", install: "go install github.com/air-verse/air@latest"},
+	{name: "air", install: "go install github.com/air-verse/air@v1.67.4"},
 }
 
 var versionRe = regexp.MustCompile(`(\d+)\.(\d+)(?:\.(\d+))?`)
