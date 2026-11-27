@@ -28,6 +28,11 @@ updates:
     commit-message:
       prefix: chore
       include: scope
+    ignore:
+      # "typescript" stays on 6.0 for typescript-eslint (peer <6.1);
+      # type checking uses TypeScript 7 through the "typescript-7" alias.
+      - dependency-name: typescript
+        versions: [">=6.1.0"]
     groups:
       web:
         patterns: ["*"]
