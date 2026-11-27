@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/brand/tokenkitty-logo.svg" width="128" height="128" alt="Tokenkitty logo: a one-eyed pirate cat over crossed bones with gold coins">
+</p>
+
 # Tokenkitty
 
 **Open-source, self-hosted dashboard for what your team spends on AI coding agents.**
