@@ -12,15 +12,15 @@ Thanks for helping. This guide covers setup, the rules every change follows, and
 
 | Tool | Version | Windows install |
 |---|---|---|
-| Git | latest | `winget install Git.Git` |
-| Go | 1.23+ | `winget install GoLang.Go` |
-| Node | 20 LTS or newer | `winget install OpenJS.NodeJS.LTS` |
-| Task | 3.x | `winget install Task.Task` |
-| Docker Desktop | latest | `winget install Docker.DockerDesktop` |
-| golangci-lint | see `Taskfile.yml` | `winget install GolangCI.golangci-lint` |
-| sqlc | see `Taskfile.yml` | `go install github.com/sqlc-dev/sqlc/cmd/sqlc@<version>` |
-| golang-migrate | see `Taskfile.yml` | `go install -tags postgres github.com/golang-migrate/migrate/v4/cmd/migrate@<version>` |
-| air | see `Taskfile.yml` | `go install github.com/air-verse/air@<version>` |
+| Git | any recent | `winget install Git.Git` |
+| Go | 1.23+ (CI uses latest stable) | `winget install GoLang.Go` |
+| Node | 22+ (24 LTS recommended) | `winget install OpenJS.NodeJS.LTS` |
+| Task | 3.54.0 | `winget install Task.Task` |
+| Docker Desktop | any recent | `winget install Docker.DockerDesktop` |
+| golangci-lint | v2.15.0 | `go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.15.0` |
+| sqlc | v1.30.0 | `go install github.com/sqlc-dev/sqlc/cmd/sqlc@v1.30.0` |
+| golang-migrate | v4.20.1 | `go install -tags postgres github.com/golang-migrate/migrate/v4/cmd/migrate@v4.20.1` |
+| air | v1.67.4 | `go install github.com/air-verse/air@v1.67.4` |
 
 On macOS and Linux, install the same tools with Homebrew or your package manager.
 
@@ -28,7 +28,7 @@ Then:
 
 ```sh
 task doctor   # checks every tool above
-task dev      # postgres in docker, server with live reload, web dev server
+task dev      # web dev server (postgres and server live reload come later)
 task test     # all Go and web tests
 task lint     # golangci-lint, eslint, tsc
 ```
