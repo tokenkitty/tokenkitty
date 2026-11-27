@@ -1,0 +1,26 @@
+# build output
+/bin/
+/dist/
+/tmp/
+*.exe
+*.test
+*.out
+coverage.*
+
+# web
+node_modules/
+web/dist/
+*.tsbuildinfo
+
+# env and local config
+.env
+.env.*
+!.env.example
+*.local
+
+# editors and OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
