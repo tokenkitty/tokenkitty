@@ -1,0 +1,92 @@
+version: "3"
+
+vars:
+  VERSION:
+    sh: git describe --tags --always --dirty 2>/dev/null || echo dev
+  LDFLAGS: -s -w -X github.com/tokenkitty/tokenkitty/internal/buildinfo.Version={{.VERSION}}
+
+env:
+  CGO_ENABLED: "0"
+
+tasks:
+  default:
+    cmds:
+      - task --list
+    silent: true
+
+  doctor:
+    desc: Check that every development tool is installed and new enough
+    cmds:
+      - go run ./tools/doctor
+
+  dev:
+    desc: Run the web dev server (server live reload arrives with the server skeleton)
+    deps: [web:install]
+    dir: web
+    cmds:
+      - npm run dev
+
+  test:
+    desc: Run all Go and web tests
+    cmds:
+      - task: test:go
+      - task: test:web
+
+  test:go:
+    cmds:
+      - go test ./...
+
+  test:web:
+    deps: [web:install]
+    dir: web
+    cmds:
+      - npm test
+
+  lint:
+    desc: Run golangci-lint, eslint and the TypeScript type check
+    cmds:
+      - task: lint:go
+      - task: lint:web
+
+  lint:go:
+    cmds:
+      - golangci-lint run ./...
+
+  lint:web:
+    deps: [web:install]
+    dir: web
+    cmds:
+      - npm run lint
+      - npm run typecheck
+
+  build:
+    desc: Build the web app and both binaries into bin/
+    cmds:
+      - task: build:web
+      - task: build:go
+
+  build:web:
+    deps: [web:install]
+    dir: web
+    cmds:
+      - npm run build
+
+  build:go:
+    cmds:
+      - go build -trimpath -ldflags "{{.LDFLAGS}}" -o bin/tokenkitty{{exeExt}} ./cmd/tokenkitty
+      - go build -trimpath -ldflags "{{.LDFLAGS}}" -o bin/tokenkitty-server{{exeExt}} ./cmd/tokenkitty-server
+
+  fixtures:
+    desc: Re-run parsers on fixtures and rewrite golden files (only when intended)
+    cmds:
+      - go test ./collector/... -update
+
+  web:install:
+    dir: web
+    sources:
+      - package.json
+      - package-lock.json
+    generates:
+      - node_modules/.package-lock.json
+    cmds:
+      - npm ci
